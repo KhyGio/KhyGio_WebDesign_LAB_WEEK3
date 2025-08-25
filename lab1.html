@@ -2,30 +2,133 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration</title>
+    <title>Create Account</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form {
+            max-width: 600px;
+            margin: auto;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 150px 1fr 150px 1fr; /* 2 labels + 2 inputs */
+            gap: 10px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        .form-row-single {
+            display: grid;
+            grid-template-columns: 150px 1fr; /* label + input */
+            gap: 10px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 6px;
+            box-sizing: border-box;
+        }
+        textarea {
+            resize: vertical;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
-    <form action="#">
-        <label for="firstname">First Name:</label>
-        <input type="text" id="firstname" placeholder="Enter your First Name">
-        <label for="lastname">Last Name:</label>
-        <input type="text" id="lastname" placeholder="Enter your Last Name">
-        <br><br>
-        <label for="email">Email:</label>
-        <input type="text" id="email" placeholder="Enter your Email">
-        <br><br>
-        <label for="password">Password:</label>
-        <input type="text" id="password" placeholder="Enter your Password">
-        <br><br>
-        <label for="comnirm password">Confirm Password:</label>
-        <input type="text" id="confirm password" placeholder="Confirm your Password "> 
-        <br><br>
-        <label for="gender">Gender:</label>
-        <Select id="gender">
-            <option value="femal">Female</option>
-            <option value="male">Male</option>
-        </Select>
+    <form action="register.php" method="POST">
+        <h1>Create Account</h1>
+
+        <!-- Name (2 columns) -->
+        <div class="form-row">
+            <label for="firstname">First Name:</label>
+            <input type="text" id="firstname" name="firstname" placeholder="Enter your First Name" required>
+
+            <label for="lastname">Last Name:</label>
+            <input type="text" id="lastname" name="lastname" placeholder="Enter your Last Name" required>
+        </div>
+
+        <!-- Email (takes full width like above row) -->
+        <div class="form-row-single">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your Email" required>
+        </div>
+
+        <!-- Password -->
+        <div class="form-row">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your Password" required>
+        </div>
+
+        <!-- Gender -->
+        <div class="form-row-single">
+            <label>Gender:</label>
+            <div>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label>
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Male</label>
+            </div>
+        </div>
+
+        <!-- Hobbies -->
+        <div class="form-row-single">
+            <label>Hobbies:</label>
+            <div>
+                <input type="checkbox" id="music" name="hobbies[]" value="music">
+                <label for="music">Music</label>
+                <input type="checkbox" id="travel" name="hobbies[]" value="travel">
+                <label for="travel">Travel</label>
+                <input type="checkbox" id="sport" name="hobbies[]" value="sport">
+                <label for="sport">Sport</label>
+                <input type="checkbox" id="movie" name="hobbies[]" value="movie">
+                <label for="movie">Movie</label>
+            </div>
+        </div>
+
+        <!-- Income -->
+        <div class="form-row">
+            <label for="source_of_income">Source of Income:</label>
+            <select id="source_of_income" name="source_of_income">
+                <option value="job">Job</option>
+                <option value="business">Business</option>
+                <option value="investment">Investment</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="income">Income:</label>
+            <input type="range" id="income" name="income" min="0" max="100000" step="1000">
+        </div>
+
+        <!-- Profile picture -->
+        <div class="form-row-single">
+            <label for="pic">Upload Profile Picture:</label>
+            <input type="file" id="pic" name="pic" accept="image/*">
+        </div>
+
+        <!-- Age -->
+        <div class="form-row-single">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" placeholder="Enter your Age">
+        </div>
+
+        <!-- Bio -->
+        <div class="form-row-single">
+            <label for="bio">Bio:</label>
+            <textarea id="bio" name="bio" rows="4" cols="50" placeholder="Tell us about yourself"></textarea>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit">Create</button>
     </form>
 </body>
 </html>
